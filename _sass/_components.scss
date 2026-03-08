@@ -278,6 +278,45 @@ ul.task-list input[type="checkbox"] {
 
 
 
+/* Research cards (3-column) */
+.research-page {
+  line-height: 1.65;
+}
+.research-page .card-title {
+  font-size: 21px;
+}
+
+.research-page .card .card-text {
+  font-size: 16px;
+}
+
+.research-page .lead {
+  font-size: 17px;
+}
+.research-icon-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 120px;          /* fixed icon area height */
+  margin: 0.25rem 0 0.75rem 0;
+}
+
+.research-icon {
+  max-height: 90px;
+  width: auto;
+  object-fit: contain;
+  filter: drop-shadow(0 6px 10px rgba(0, 0, 0, 0.12));
+}
+.research-card {
+  border: 1px solid rgba(0,0,0,0.28);
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+}
+.research-card:hover {
+  transform: translateY(-3px);
+  border-color: rgba(0, 0, 0, 0.32);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.18);
+}
+
 
 /* Team page style */
 .team-section-title{
