@@ -3,34 +3,150 @@ layout: page
 ---
 <div class="post">
   <article>
-    {% if page.profiles %}
-      {% for profile in page.profiles %}
-        <hr>
-        <div class="profile float-{% if profile.align == 'left' %}left{% else %}right{% endif %}">
-          {% if profile.image %}
-            {% assign profile_image_path = profile.image | prepend: 'assets/img/' %}
-            {% if profile.image_circular %}
-              {% assign profile_image_class = 'img-fluid z-depth-1 rounded-circle' %}
-            {% else %}
-              {% assign profile_image_class = 'img-fluid z-depth-1 rounded' %}
-            {% endif %}
-            {% capture sizes %}(min-width: {{ site.max_width }}) {{ site.max_width | minus: 30 | times: 0.3}}px, (min-width: 576px) 30vw, 95vw"{% endcapture %}
-            {% include figure.liquid loading="eager" path=profile_image_path class=profile_image_class sizes=sizes alt=profile.image %}
-          {% endif %}
-          {% if profile.more_info %}
-            <div class="more-info">{{ profile.more_info }}</div>
-          {% endif %}
-        </div>
+    {%- assign members_dir = 'assets/img/members/' -%}
 
-        <div class="clearfix">
-          {% if profile.content %}
-            {% capture profile_content %}{% include_relative {{ profile.content }} %}{% endcapture %}
-            {{ profile_content | markdownify }}
-          {% else %}
-            {{ content }}
-          {% endif %}
+    <div class="thin-divider"></div>
+
+    <!-- ===================== Professor ===================== -->
+    {%- if page.professor -%}
+      <div class="team-section-title">Professor</div>
+
+      <div class="team-card prof-card" style="margin-bottom: 60px;">
+        {%- if page.professor.img -%}
+          {%- assign prof_img_path = page.professor.img | prepend: members_dir -%}
+          <img class="avatar circle" src="{{ prof_img_path | relative_url }}" alt="{{ page.professor.name }}">
+        {%- else -%}
+          <div class="avatar" aria-label="No image"></div>
+        {%- endif -%}
+
+        <div class="prof-info">
+          <p class="name">
+            {{ page.professor.name }}
+          </p>
+
+          {%- if page.professor.status -%}
+            <div class="muted" style="margin-top:0.25rem;">{{ page.professor.status }}</div>
+          {%- endif -%}
+
+          {%- if page.professor.affiliation -%}
+            <div class="muted" style="margin-top:0.25rem; margin-bottom:0.30rem;">{{ page.professor.affiliation }}</div>
+          {%- endif -%}
+
+          <div class="icon-row">
+            {%- if page.professor.office -%}
+              <span class="icon-link muted"><i class="fa-solid fa-building"></i> {{ page.professor.office }}</span>
+            {%- endif -%}
+
+			{%- if page.professor.phone -%}
+	  		  <div class="icon-link muted"><i class="fa-solid fa-phone"></i> {{ page.professor.phone }}</div>
+			{%- endif -%}
+
+            {%- if page.professor.email -%}
+              <div class="icon-link muted"><i class="fa-solid fa-envelope"></i> {{ page.professor.email }}</div>
+            {%- endif -%}
+
+            {%- if page.professor.scholar -%}
+              <a class="icon-link" href="{{ page.professor.scholar }}" target="_blank" rel="noopener">
+                <i class="fa-solid fa-graduation-cap"></i> Google Scholar
+              </a>
+            {%- endif -%}
+
+            {%- if page.professor.homepage -%}
+              <a class="icon-link" href="{{ page.professor.homepage }}" target="_blank" rel="noopener">
+                <i class="fa-solid fa-house"></i>Homepage
+              </a>
+            {%- endif -%}
+          </div>
         </div>
-      {% endfor %}
-    {% endif %}
+      </div>
+    {%- endif -%}
+
+    <!-- ===================== Students (split by category) ===================== -->
+    {%- if page.members and page.members.size > 0 -%}
+      {%- assign grads = page.members | where: "category", "graduate" -%}
+      {%- assign ugs   = page.members | where: "category", "undergraduate" -%}
+
+      {%- if grads and grads.size > 0 -%}
+        <div class="team-section-title">Graduate Students</div>
+        <div class="team-grid">
+          {%- for m in grads -%}
+            <div class="team-card student-card">
+              {%- if m.img -%}
+                {%- assign m_img_path = m.img | prepend: members_dir -%}
+                <img class="avatar circle" src="{{ m_img_path | relative_url }}" alt="{{ m.name }}">
+              {%- else -%}
+                <div class="avatar circle" aria-label="No image"></div>
+              {%- endif -%}
+
+              <p class="student-name">
+                {{ m.name }}
+                {%- if m.homepage -%}
+                  <a href="{{ m.homepage }}" target="_blank" rel="noopener" style="margin-left:0.35rem; text-decoration:none;">
+                    <i class="fa-solid fa-house"></i>
+                  </a>
+                {%- endif -%}
+              </p>
+
+              {%- if m.degree -%}
+                <p class="student-degree muted">{{ m.degree }}</p>
+			  {%- endif -%}
+
+			  {%- if m.email -%}
+			  	<span class="muted"><i class="fa-solid fa-envelope" style="margin-right:0.3rem;"></i>{{ m.email }}</span>
+			  {%- endif -%}
+
+              {%- if m.research_area and m.research_area != "" -%}
+                <div class="student-ra">
+                  <span class="muted"><i class="fa-regular fa-pen-to-square"></i> Research Areas:</span>
+                  <span>{{ m.research_area }}</span>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+
+      {%- if ugs and ugs.size > 0 -%}
+        <div class="team-section-title">Undergraduate Students</div>
+        <div class="team-grid">
+          {%- for m in ugs -%}
+            <div class="team-card student-card">
+              {%- if m.img -%}
+                {%- assign m_img_path = m.img | prepend: members_dir -%}
+                <img class="avatar circle" src="{{ m_img_path | relative_url }}" alt="{{ m.name }}">
+              {%- else -%}
+                <div class="avatar circle" aria-label="No image"></div>
+              {%- endif -%}
+
+              <p class="student-name">
+                {{ m.name }}
+                {%- if m.homepage -%}
+                  <a href="{{ m.homepage }}" target="_blank" rel="noopener" style="margin-left:0.35rem; text-decoration:none;">
+                    <i class="fa-solid fa-house"></i>
+                  </a>
+                {%- endif -%}
+              </p>
+
+              {%- if m.degree -%}
+                <p class="student-degree muted">{{ m.degree }}</p>
+			  {%- endif -%}
+
+              {%- if m.email -%}
+                <span class="muted"><i class="fa-solid fa-envelope" style="margin-right:0.3rem;"></i>{{ m.email }}</span>
+              {%- endif -%}
+
+              {%- if m.research_area and m.research_area != "" -%}
+                <div class="student-ra">
+                  <span class="muted"><i class="fa-regular fa-pen-to-square"></i> Research Areas:</span>
+                  <span>{{ m.research_area }}</span>
+                </div>
+              {%- endif -%}
+            </div>
+          {%- endfor -%}
+        </div>
+      {%- endif -%}
+    {%- endif -%}
+
   </article>
 </div>
+

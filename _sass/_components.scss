@@ -53,6 +53,7 @@ ul.task-list input[type="checkbox"] {
   }
 }
 
+
 // Profile
 
 .profile {
@@ -89,6 +90,21 @@ ul.task-list input[type="checkbox"] {
     }
   }
 }
+
+.post-description {
+  margin-bottom: 2rem;
+  font-size: 0.875rem;
+
+  a {
+    color: inherit;
+
+    &:hover {
+      color: var(--global-theme-color);
+      text-decoration: none;
+    }
+  }
+}
+
 
 // CV
 
@@ -258,4 +274,114 @@ ul.task-list input[type="checkbox"] {
 
 .d2h-diff-table {
   position: relative;
+}
+
+
+
+
+/* Team page style */
+.team-section-title{
+  font-size: 2.0rem;
+  font-weight: 400;
+  margin: 2.2rem 0 1.2rem 0;
+}
+.team-card{
+  background: #fff;
+  border: 1px solid rgba(0,0,0,0.22);
+  border-radius: 14px;
+  padding: 1.2rem;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.14);
+  transition: box-shadow 0.25s ease, transform 0.25s ease;
+}
+.team-card:hover{
+  box-shadow: 0 1px 4px rgba(0,0,0,0.24);
+  transform: translateY(-3px);
+}
+.prof-card{
+  width: 100%;
+  max-width: 530px;
+  margin: 0 0 2.2rem 0;
+  display: flex;
+  gap: 1.25rem;
+  align-items: center;
+}
+.avatar{
+  width: 160px;
+  height: 160px;
+  border-radius: 14px;
+  object-fit: cover;
+  background: #f3f4f6;
+  flex: 0 0 auto;
+}
+.avatar.circle{
+  border-radius: 9999px;
+}
+.prof-info .name{
+  font-size: 1.55rem;
+  font-weight: 500;
+  line-height: 1.15;
+  margin: 0;
+}
+.muted{
+  opacity: 0.78;
+}
+.icon-row{
+  margin-top: 0.1rem;
+  margin-bottom: 0.1rem;
+}
+.icon-link{
+  display: grid;
+  grid-template-columns: 1.4em 1fr;
+  column-gap: 0.1rem;
+  align-items: center;
+  margin-top: 0.1rem;
+  text-decoration: none;
+  font-size: 1rem;
+}
+.icon-link i{
+  justify-self: start;
+  width: 1.4em;
+  text-align: center;
+}
+.team-grid{
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 1.25rem;
+}
+.student-card{
+  padding: 1.15rem 1.05rem;
+  text-align: center;
+  max-width: 260px;
+  width: 100%;
+  //margin: 0 auto;
+  margin: 0 0 2.2rem 0;
+}
+.student-name{
+  margin: 0.8rem 0 0.25rem 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+  line-height: 1.2;
+}
+.student-degree{
+  margin: 0;
+  font-size: 1.0rem;
+}
+.student-ra{
+  margin-top: 0.1rem;
+  font-size: 0.98rem;
+}
+@media (max-width: 640px){
+  .prof-card{
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .avatar{
+    width: 140px;
+    height: 140px;
+  }
+}
+.thin-divider{
+  height: 1px;
+  background: #C9C9C9;
+  margin: 0.2rem 0 0.2rem 0;
 }
