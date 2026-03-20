@@ -11,7 +11,7 @@ ninja.data = [{
     },
   },{id: "nav-publications",
           title: "publications",
-          description: "(TBD) Please see the paper list in https://alsroad.github.io/",
+          description: "(TBD) Please see the paper list at https://alsroad.github.io/",
           section: "Navigation",
           handler: () => {
             window.location.href = "/publications/";
