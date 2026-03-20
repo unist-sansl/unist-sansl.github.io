@@ -2,7 +2,7 @@
 layout: page
 permalink: /publications/
 title: publications
-description: (TBD) Please see the paper list in https://alsroad.github.io/
+description: (TBD) Please see the paper list at https://alsroad.github.io/
 nav: true
 nav_order: 2
 ---
