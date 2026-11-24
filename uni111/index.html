@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>UNIST Express — Undercover Investigation</title>
+    <meta name="description" content="A 2D escape room about encryption, signatures and certificates." />
+    <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Ccircle cx='32' cy='32' r='28' fill='%23eef2f8' stroke='%232a2440' stroke-width='4'/%3E%3Crect x='14' y='20' width='36' height='26' rx='13' fill='%2327305e'/%3E%3C/svg%3E" />
+    <script type="module" crossorigin src="./assets/index--rrZk4ky.min.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-Dl3dOSZS.css">
+  </head>
+  <body>
+    <div id="app">
+      <div id="stage">
+        <div id="game"></div>
+        <div id="ui" aria-live="polite"></div>
+      </div>
+    </div>
+    <script>
+      // Show content/script errors (e.g. a typo in story/room1.script.md) on screen instead of a blank page.
+      window.addEventListener('error', function (e) {
+        if (window.__cosmo) return; // game already started: not a load error
+        var msg = (e && e.message) || String(e);
+        var box = document.getElementById('load-error') || document.body.appendChild(document.createElement('pre'));
+        box.id = 'load-error';
+        box.style.cssText = 'position:fixed;left:20px;right:20px;top:20px;z-index:99;background:#fff6e3;color:#2a2440;border:3px solid #d95a4d;border-radius:12px;padding:16px;font:15px/1.5 monospace;white-space:pre-wrap';
+        box.textContent = 'The game could not start.\n\n' + msg + '\n\nFix the file, save it, and the page will reload.';
+      });
+    </script>
+  </body>
+</html>
